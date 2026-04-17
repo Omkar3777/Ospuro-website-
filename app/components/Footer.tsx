@@ -34,13 +34,13 @@ export default function Footer() {
        <div className="flex items-center gap-3">
 
   <Image
-    src="/logo2.png"
-    alt="Ospuro Logo"
-    width={160}
-    height={50}
-    className="h-10 w-auto object-contain"
-    priority
-  />
+  src="/logo1.png"
+  alt="Ospuro Logo"
+  width={160}
+  height={50}
+  className="h-10 w-auto object-contain"
+  priority
+/>
 
   {/* Optional brand text */}
   <span className="text-lg font-semibold text-white">
