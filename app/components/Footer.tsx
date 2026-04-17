@@ -33,7 +33,7 @@ export default function Footer() {
         {/* BRAND */}
         <div>
           <Image
-            src="/logo2.png"
+            src="/Logo2.png"
             alt="Ospuro Logo"
             width={200}
             height={80}
