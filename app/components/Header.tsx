@@ -1,11 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [imgError, setImgError] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "HOME", href: "/" },
@@ -16,23 +26,39 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 w-full z-50">
-
-      {/* WHITE GLASS BACKGROUND */}
-      <div className="absolute inset-0 bg-white/80 backdrop-blur-xl border-b border-gray-200"></div>
-
-      {/* CONTENT */}
-      <div className="relative max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/90 backdrop-blur-lg shadow-md"
+          : "bg-white/70 backdrop-blur"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
 
         {/* LOGO */}
         <Link href="/" onClick={() => setMenuOpen(false)}>
-          <Image
-  src="/logo1.png"
-  alt="Ospuro Logo"
-  width={140}
-  height={40}
-  className="object-contain cursor-pointer"
-/>
+          <div className="relative w-[140px] h-[40px]">
+
+            {/* MAIN IMAGE */}
+            {!imgError && (
+              <Image
+                src="/logo1.png"   // 🔥 EXACT NAME FROM GITHUB
+                alt="Ospuro Logo"
+                fill
+                className="object-contain cursor-pointer"
+                onError={() => setImgError(true)}
+                priority
+              />
+            )}
+
+            {/* FALLBACK (if image fails) */}
+            {imgError && (
+              <span className="text-xl font-bold text-red-600">
+                OSPURO
+              </span>
+            )}
+
+          </div>
         </Link>
 
         {/* DESKTOP MENU */}
@@ -44,8 +70,6 @@ export default function Header() {
               className="relative group hover:text-red-600 transition"
             >
               {item.name}
-
-              {/* UNDERLINE ANIMATION */}
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
@@ -56,7 +80,6 @@ export default function Header() {
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden text-xl text-gray-800 p-2 rounded-md 
           hover:bg-red-600 hover:text-white 
-          hover:shadow-[0_0_10px_rgba(255,0,0,0.4)]
           transition"
         >
           ☰
@@ -65,10 +88,9 @@ export default function Header() {
 
       {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="md:hidden relative mx-4 mt-2 rounded-xl 
+        <div className="md:hidden mx-4 mt-2 rounded-xl 
         bg-white shadow-lg border border-gray-200 
         p-6 space-y-4 text-gray-700">
-
           {navItems.map((item, i) => (
             <Link
               key={i}
