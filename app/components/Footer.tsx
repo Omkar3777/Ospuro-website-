@@ -12,7 +12,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-black via-[#0f172a] to-[#1e293b] text-white pt-16 pb-8">
+    <footer className="bg-gradient-to-br from-black via-[#0f172a] to-black text-white pt-16 pb-8">
 
       <div className="max-w-7xl mx-auto px-6">
 
