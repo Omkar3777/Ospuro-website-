@@ -2,36 +2,42 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-black via-[#0f172a] to-[#1e293b] text-white pt-16 pb-8">
 
-      {/* ================= MAIN CONTAINER ================= */}
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* ================= TOP GRID ================= */}
-        <div className="grid md:grid-cols-4 gap-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
+        {/* ================= MAIN GRID ================= */}
+        <div className="grid md:grid-cols-4 gap-10 
+        bg-white/5 backdrop-blur-xl border border-white/10 
+        rounded-2xl p-8">
 
           {/* ================= BRAND ================= */}
           <div>
-            <div className="mb-4">
 
-              {/* ✅ FIXED LOGO */}
-              <div className="bg-white/10 px-3 py-2 rounded-lg inline-flex">
-                <Image
-                  src="/logo2.png"   // ✅ confirmed working file
-                  alt="Ospuro Logo"
-                  width={180}
-                  height={60}
-                  className="h-12 w-auto object-contain"
-                  priority
-                />
-              </div>
+            {/* 🔥 LOGO FIXED */}
+            <div className="inline-block">
+  <Image
+    src="/logo2.png"
+    alt="Ospuro Logo"
+    width={180}
+    height={70}
+    className="object-contain h-12 w-auto 
+    drop-shadow-[0_0_6px_rgba(255,0,0,0.4)]"
+    priority
+  />
+</div>
 
-            </div>
-
-            <p className="text-gray-400 text-sm leading-6">
+            <p className="mt-4 text-gray-400 text-sm leading-6">
               Providing clean and safe water solutions for industries with
               innovation, quality, and trust.
             </p>
@@ -40,6 +46,7 @@ export default function Footer() {
           {/* ================= QUICK LINKS ================= */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+
             <ul className="space-y-2 text-gray-400 text-sm">
               <li><Link href="/" className="hover:text-red-500 transition">Home</Link></li>
               <li><Link href="/products" className="hover:text-red-500 transition">Products</Link></li>
@@ -88,19 +95,28 @@ export default function Footer() {
 
         </div>
 
-        {/* ================= SOCIAL ================= */}
+        {/* ================= SOCIAL ICONS ================= */}
         <div className="flex justify-center gap-6 mt-10">
 
-          {["F", "I", "L", "Y", "W"].map((item, i) => (
-            <div
+          {[
+            { icon: <FaFacebookF />, link: "#" },
+            { icon: <FaInstagram />, link: "#" },
+            { icon: <FaLinkedinIn />, link: "#" },
+            { icon: <FaYoutube />, link: "#" },
+            { icon: <FaWhatsapp />, link: "#" },
+          ].map((item, i) => (
+            <a
               key={i}
-              className="w-10 h-10 flex items-center justify-center rounded-full 
-              border border-gray-600 text-gray-400 
+              href={item.link}
+              target="_blank"
+              className="w-10 h-10 flex items-center justify-center 
+              rounded-full border border-gray-600 text-gray-400 
               hover:bg-red-600 hover:text-white hover:border-red-600 
-              transition cursor-pointer"
+              hover:shadow-[0_0_15px_rgba(255,0,0,0.6)]
+              transition"
             >
-              {item}
-            </div>
+              {item.icon}
+            </a>
           ))}
 
         </div>
