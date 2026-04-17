@@ -27,12 +27,12 @@ export default function Header() {
         {/* LOGO */}
         <Link href="/" onClick={() => setMenuOpen(false)}>
           <Image
-            src="/Logo1.png"
-            alt="Ospuro Logo"
-            width={140}
-            height={40}
-            className="object-contain cursor-pointer"
-          />
+  src="/logo1.png"
+  alt="Ospuro Logo"
+  width={140}
+  height={40}
+  className="object-contain cursor-pointer"
+/>
         </Link>
 
         {/* DESKTOP MENU */}
