@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import React from "react";
 
 export default function ContactPage() {
   const [status, setStatus] = useState(null); // success | error | null
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
