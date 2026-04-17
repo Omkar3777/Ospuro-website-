@@ -5,8 +5,9 @@ import Link from "next/link";
 import React from "react";
 
 export default function ContactPage() {
-  const [status, setStatus] = useState(null); // success | error | null
-  const [loading, setLoading] = useState(false);
+const [status, setStatus] = useState<"success" | "error" | null>(null); 
+const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
