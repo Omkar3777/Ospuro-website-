@@ -29,30 +29,27 @@ export default function Header() {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-lg shadow-md"
-          : "bg-white/70 backdrop-blur"
+          ? "bg-white/90 backdrop-blur-xl shadow-lg"
+          : "bg-white/70 backdrop-blur-md"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center relative z-20">
 
-        {/* LOGO */}
+        {/* ================= LOGO ================= */}
         <Link href="/" onClick={() => setMenuOpen(false)}>
-          <div className="relative w-[140px] h-[40px]">
+          <div className="flex items-center h-[40px]">
 
-            {/* MAIN IMAGE */}
-            {!imgError && (
+            {!imgError ? (
               <Image
-                src="/logo1.png"   // 🔥 EXACT NAME FROM GITHUB
+                src="/logo1.png"   // must match EXACT file name
                 alt="Ospuro Logo"
-                fill
-                className="object-contain cursor-pointer"
-                onError={() => setImgError(true)}
+                width={160}
+                height={50}
                 priority
+                className="object-contain h-10 w-auto transition duration-300 hover:scale-105"
+                onError={() => setImgError(true)}
               />
-            )}
-
-            {/* FALLBACK (if image fails) */}
-            {imgError && (
+            ) : (
               <span className="text-xl font-bold text-red-600">
                 OSPURO
               </span>
@@ -61,7 +58,7 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* DESKTOP MENU */}
+        {/* ================= DESKTOP MENU ================= */}
         <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
           {navItems.map((item, i) => (
             <Link
@@ -70,12 +67,14 @@ export default function Header() {
               className="relative group hover:text-red-600 transition"
             >
               {item.name}
+
+              {/* underline animation */}
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
         </nav>
 
-        {/* MOBILE BUTTON */}
+        {/* ================= MOBILE BUTTON ================= */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden text-xl text-gray-800 p-2 rounded-md 
@@ -86,11 +85,12 @@ export default function Header() {
         </button>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* ================= MOBILE MENU ================= */}
       {menuOpen && (
         <div className="md:hidden mx-4 mt-2 rounded-xl 
-        bg-white shadow-lg border border-gray-200 
-        p-6 space-y-4 text-gray-700">
+        bg-white shadow-xl border border-gray-200 
+        p-6 space-y-4 text-gray-700 animate-fadeIn">
+
           {navItems.map((item, i) => (
             <Link
               key={i}
@@ -101,6 +101,7 @@ export default function Header() {
               {item.name}
             </Link>
           ))}
+
         </div>
       )}
     </header>
