@@ -31,15 +31,21 @@ export default function Footer() {
       <div className="relative max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl shadow-xl">
 
         {/* BRAND */}
-        <div>
-          <Image
-            src="/Logo2.png"
-            alt="Ospuro Logo"
-            width={200}
-            height={80}
-            className="h-10 w-auto object-contain"
-          />
+       <div className="flex items-center gap-3">
 
+  <Image
+    src="/logo2.png"
+    alt="Ospuro Logo"
+    width={160}
+    height={50}
+    className="h-10 w-auto object-contain"
+    priority
+  />
+
+  {/* Optional brand text */}
+  <span className="text-lg font-semibold text-white">
+    OSPURO
+  </span>
           <p className="mt-4 text-sm text-gray-400 leading-relaxed">
             Providing clean and safe water solutions for industries with
             innovation, quality, and trust.
